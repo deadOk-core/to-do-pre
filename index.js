@@ -12,7 +12,7 @@ const formElement = document.querySelector(".to-do__form");
 const inputElement = document.querySelector(".to-do__input");
 
 function loadTasks() {
-  let savedTasks = localStorage.getItem("tasks");
+  let savedTasks = localStorage.getItem("tasks"); /*Получение данных из локального хранилища*/
   if (savedTasks !== null) {
     return JSON.parse(savedTasks); /*преобразование JSON-строки в JavaScript-объект*/
   }
@@ -56,16 +56,17 @@ function createItem(item) {
   return clone;
 }
 
-/*собирать список задач из текущей разметки*/
+/*Собирает список задач из текущей разметки*/
 function getTasksFromDOM() {
-  let itemsNamesElements = document.querySelectorAll(".to-do__item-text");
-  let tasks = [];
+  const itemsNamesElements = document.querySelectorAll(".to-do__item-text");
+  const tasks = [];
   itemsNamesElements.forEach(function (item) {
     tasks.push(item.textContent);
   });
   return tasks;
 }
 
+/*Сохраняет в локальное хранилище*/
 function saveTasks(tasks) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
